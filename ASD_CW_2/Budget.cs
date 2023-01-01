@@ -11,9 +11,10 @@ namespace ASD_CW_2
         private double bAmount;
         private double balance;
 
-        public Budget()
+        public Budget(double amount, double balance)
         {
-
+            this.bAmount = amount;
+            this.balance = balance;
         }
 
         public double getAmount()

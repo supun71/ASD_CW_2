@@ -15,9 +15,13 @@ namespace ASD_CW_2
         private bool recurring;
         private DateTime date;
 
-        public Transaction()
+        public Transaction(double amount, string desc, bool recurring, DateTime date)
         {
-            id = _id++;
+            this.id = _id++;
+            this.tAmount = amount;
+            this.description = desc;
+            this.recurring = recurring;
+            this.date = date;
         }
 
         public int getId()
