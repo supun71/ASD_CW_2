@@ -6,17 +6,23 @@ using System.Threading.Tasks;
 
 namespace ASD_CW_2
 {
-    internal class Transactions
+    internal class Transaction
     {
-
+        private int _id = 0;
+        private int id;
         private double tAmount;
         private string description;
         private bool recurring;
         private DateTime date;
 
-        public Transactions()
+        public Transaction()
         {
-            
+            id = _id++;
+        }
+
+        public int getId()
+        {
+            return id;
         }
 
         public double getAmount()
