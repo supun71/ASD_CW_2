@@ -8,7 +8,7 @@ namespace ASD_CW_2
 {
     internal class Transaction
     {
-        private int _id = 0;
+        private static int _id = 0;
         private int id;
         private double tAmount;
         private string description;
@@ -17,7 +17,7 @@ namespace ASD_CW_2
 
         public Transaction(double amount, string desc, bool recurring, DateTime date)
         {
-            this.id = _id++;
+            this.id = ++_id;
             this.tAmount = amount;
             this.description = desc;
             this.recurring = recurring;
