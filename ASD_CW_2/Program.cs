@@ -5,7 +5,7 @@ namespace ASD_CW_2
 {
     class Program
     {
-        private static List<Transaction?> transactions = new List<Transaction?>();
+        private static List<Transaction> transactions = new List<Transaction>();
         private static List<Category> categories = new List<Category>();
 
         static void Main(string[] args)
@@ -75,7 +75,7 @@ namespace ASD_CW_2
             Console.Write("Enter transaction amount: ");
             double amount = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter description: ");
-            string? desc = Console.ReadLine();
+            string desc = Console.ReadLine();
             Console.Write("Is recurring (true or false): ");
             bool recurring = Convert.ToBoolean(Console.ReadLine());
             Console.Write("Enter due-date (yyyy.mm.dd): ");
@@ -88,14 +88,81 @@ namespace ASD_CW_2
 
         private static void editTransaction()
         {
+            Console.Write("Enter the transaction Id: ");
+            int id = Convert.ToInt32(Console.ReadLine());
 
+            Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
+
+            if (transactionObj == null)
+            {
+                Console.WriteLine($"Id number {id} not belongs to any transaction");
+            }
+
+            Console.WriteLine("Choose an option:");
+            Console.WriteLine("1) Change Category");
+            Console.WriteLine("2) Change Date");
+            Console.WriteLine("3) Edit Amount");
+            Console.WriteLine("4) Edit Description");
+            Console.WriteLine("5) Change recurring status");
+
+            Console.Write("Select an option: ");
+
+            try
+            {
+                int userInput = Convert.ToInt32(Console.ReadLine());
+
+                switch (userInput)
+                {
+                    case 1:
+                        Console.Write("Enter category: ");
+                        string category = Console.ReadLine();
+
+                        if (!hasCategory(category))
+                        {
+                            Console.WriteLine($"Category {category} is not available");
+                        }
+                        editTransaction();
+                        break;
+                    case 2:
+                        Console.Write("Enter due-date (yyyy.mm.dd): ");
+                        DateTime date = Convert.ToDateTime(Console.ReadLine());
+                        transactionObj.setDateTime(date);
+                        editTransaction();
+                        break;
+                    case 3:
+                        Console.Write("Enter transaction amount: ");
+                        double amount = Convert.ToDouble(Console.ReadLine());
+                        transactionObj.setAmount(amount);
+                        editTransaction();
+                        break;
+                    case 4:
+                        Console.Write("Enter description: ");
+                        string desc = Console.ReadLine();
+                        transactionObj.setDescription(desc);
+                        editTransaction();
+                        break;
+                    case 5:
+                        Console.Write("Is recurring (true or false): ");
+                        bool recurring = Convert.ToBoolean(Console.ReadLine());
+                        transactionObj.setRecurring(recurring);
+                        editTransaction();
+                        break;
+                    default:
+                        Console.WriteLine("");
+                        throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void listTransaction()
         {
-            foreach (Transaction? t in transactions)
+            foreach (Transaction t in transactions)
             {
-                Console.WriteLine($"{t?.getId()} : {t?.getDate()} : {t?.getAmount()} : {t?.getDescription()} : {t?.isRecurring()}");
+                Console.WriteLine($"{t.getId()} : {t.getDate()} : {t.getAmount()} : {t.getDescription()} : {t.isRecurring()}");
             }
         }
 
@@ -104,7 +171,12 @@ namespace ASD_CW_2
             Console.Write("Enter the transaction Id: ");
             int id = Convert.ToInt32(Console.ReadLine());
 
-            Transaction? transactionObj = transactions.FirstOrDefault(Transaction => Transaction?.getId() == id);
+            Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
+
+            if (transactionObj == null)
+            {
+                Console.WriteLine($"Id number {id} not belongs to any transaction");
+            }
 
             transactions.Remove(transactionObj);
         }
@@ -112,7 +184,7 @@ namespace ASD_CW_2
         private static void addCategory()
         {
             Console.Write("Enter category name: ");
-            string? name = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.Write("Enter category type (Income/Expense): ");
             bool type = Console.ReadLine() == "Income" ? true : false;
             
@@ -128,6 +200,20 @@ namespace ASD_CW_2
             {
                 Console.WriteLine($"{c?.getName()} : {c?.getType()}");
             }
+        }
+
+        private static bool hasCategory(string name)
+        {
+            foreach (Category c in categories)
+            {
+                if (c.getName() == name)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            return false;
         }
     }
 }

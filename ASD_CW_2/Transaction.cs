@@ -11,11 +11,11 @@ namespace ASD_CW_2
         private static int _id = 0;
         private int id;
         private double tAmount;
-        private string? description;
+        private string description;
         private bool recurring;
         private DateTime date;
 
-        public Transaction(double amount, string? desc, bool recurring, DateTime date)
+        public Transaction(double amount, string desc, bool recurring, DateTime date)
         {
             this.id = ++_id;
             this.tAmount = amount;
@@ -34,7 +34,7 @@ namespace ASD_CW_2
             return tAmount;
         }
 
-        public string? getDescription()
+        public string getDescription()
         {
             return description;
         }
