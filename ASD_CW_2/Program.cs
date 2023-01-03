@@ -115,6 +115,7 @@ namespace ASD_CW_2
             string? name = Console.ReadLine();
             Console.Write("Enter category type (Income/Expense): ");
             bool type = Console.ReadLine() == "Income" ? true : false;
+            
 
             Category c1 = new Category(name, type);
 
@@ -125,7 +126,7 @@ namespace ASD_CW_2
         {
             foreach (Category c in categories)
             {
-                Console.WriteLine($"{c.getName()} : {c.GetType()}");
+                Console.WriteLine($"{c?.getName()} : {c?.getType()}");
             }
         }
     }
