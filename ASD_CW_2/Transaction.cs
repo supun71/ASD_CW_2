@@ -14,6 +14,7 @@ namespace ASD_CW_2
         private string description;
         private bool recurring;
         private DateTime date;
+        private Category category;
 
         public Transaction(double amount, string desc, bool recurring, DateTime date)
         {
@@ -47,6 +48,11 @@ namespace ASD_CW_2
         public DateTime getDate()
         {
             return date;
+        }
+
+        public Category getCategory()
+        {
+            return category;
         }
 
         public void setAmount(double amount)

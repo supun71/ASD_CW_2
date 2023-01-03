@@ -10,6 +10,7 @@ namespace ASD_CW_2
     {
         private string name;
         private bool cType;
+        private Budget budget;
 
         public Category(string name, bool type)
         {
