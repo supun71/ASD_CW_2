@@ -5,7 +5,7 @@ namespace ASD_CW_2
 {
     class Program
     {
-        private static List<Transaction> transactions = new List<Transaction>();
+        private static List<Transaction?> transactions = new List<Transaction?>();
         private static List<Category> categories = new List<Category>();
 
         static void Main(string[] args)
@@ -93,25 +93,40 @@ namespace ASD_CW_2
 
         private static void listTransaction()
         {
-            foreach (Transaction t in transactions)
+            foreach (Transaction? t in transactions)
             {
-                Console.WriteLine($"{t.getId()} : {t.getDate()} : {t.getAmount()} : {t.getDescription()} : {t.isRecurring()}");
+                Console.WriteLine($"{t?.getId()} : {t?.getDate()} : {t?.getAmount()} : {t?.getDescription()} : {t?.isRecurring()}");
             }
         }
 
         private static void deleteTransaction()
         {
+            Console.Write("Enter the transaction Id: ");
+            int id = Convert.ToInt32(Console.ReadLine());
 
+            Transaction? transactionObj = transactions.FirstOrDefault(Transaction => Transaction?.getId() == id);
+
+            transactions.Remove(transactionObj);
         }
 
         private static void addCategory()
         {
+            Console.Write("Enter category name: ");
+            string? name = Console.ReadLine();
+            Console.Write("Enter category type (Income/Expense): ");
+            bool type = Console.ReadLine() == "Income" ? true : false;
 
+            Category c1 = new Category(name, type);
+
+            categories.Add(c1);
         }
 
         private static void listCategory()
         {
-
+            foreach (Category c in categories)
+            {
+                Console.WriteLine($"{c.getName()} : {c.GetType()}");
+            }
         }
     }
 }

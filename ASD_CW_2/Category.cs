@@ -8,16 +8,16 @@ namespace ASD_CW_2
 {
     internal class Category
     {
-        private string name;
+        private string? name;
         private bool cType;
 
-        public Category(string name, bool type)
+        public Category(string? name, bool type)
         {
             this.name = name;
             this.cType = type;
         }
 
-        public string getName()
+        public string? getName()
         {
             return name;
         }
