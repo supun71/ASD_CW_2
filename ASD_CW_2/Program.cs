@@ -10,6 +10,8 @@ namespace ASD_CW_2
 
         static void Main(string[] args)
         {
+            categories.Add(new Category("Salary",true));
+            categories.Add(new Category("Foods", false));
             menu();
         }
 
@@ -76,6 +78,22 @@ namespace ASD_CW_2
             double amount = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter description: ");
             string desc = Console.ReadLine();
+            Console.Write("Choose the category:\n");
+            foreach (Category c in categories)
+            {
+                
+                Console.WriteLine($" {c?.getName()}");
+                
+            }
+            string category1 = Console.ReadLine();
+            if (hasCategory(category1).Equals(null))
+            {
+              
+            }
+            
+            
+
+
             Console.Write("Is recurring (true or false): ");
             bool recurring = Convert.ToBoolean(Console.ReadLine());
             Console.Write("Enter due-date (yyyy.mm.dd): ");
@@ -117,7 +135,7 @@ namespace ASD_CW_2
                         Console.Write("Enter category: ");
                         string category = Console.ReadLine();
 
-                        if (!hasCategory(category))
+                        if (hasCategory(category)== null)
                         {
                             Console.WriteLine($"Category {category} is not available");
                         }
@@ -202,18 +220,19 @@ namespace ASD_CW_2
             }
         }
 
-        private static bool hasCategory(string name)
+        private static Category hasCategory(string name)
         {
             foreach (Category c in categories)
             {
                 if (c.getName() == name)
                 {
-                    return true;
+                    Category category = c;
+                    return c;
                 }
-                return false;
+                return null;
             }
 
-            return false;
+            return null;
         }
     }
 }

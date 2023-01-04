@@ -16,13 +16,14 @@ namespace ASD_CW_2
         private DateTime date;
         private Category category;
 
-        public Transaction(double amount, string desc, bool recurring, DateTime date)
+        public Transaction(double amount, string desc,  bool recurring, DateTime date)
         {
             this.id = ++_id;
             this.tAmount = amount;
             this.description = desc;
             this.recurring = recurring;
             this.date = date;
+            this.category = category;
         }
 
         public int getId()
@@ -73,6 +74,11 @@ namespace ASD_CW_2
         public void setDateTime(DateTime date)
         {
             this.date = date;
+        }
+
+        public void setCategory(Category category)
+        {
+            this.category = category;
         }
     }
 }
