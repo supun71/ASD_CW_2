@@ -162,7 +162,7 @@ namespace ASD_CW_2
         {
             foreach (Transaction t in transactions)
             {
-                Console.WriteLine($"{t.getId()} : {t.getDate()} : {t.getAmount()} : {t.getDescription()} : {t.isRecurring()}");
+                Console.WriteLine($"{t.getId()} : {t.getDate()} : {t.getAmount()} : {t.getDescription()} : {t.isRecurring()} : {t.getCategory().getName()}");
             }
         }
 
