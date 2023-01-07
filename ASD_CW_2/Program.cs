@@ -225,7 +225,11 @@ namespace ASD_CW_2
                 }
 
                 //transactionObj.getCategory().getBudget().setBalance(transactionObj.getCategory().getBudget().getBalance() + transactionObj.getAmount());
-                transactionObj.getCategory().getBudget().setBalance(transactionObj.getAmount());
+                if (!transactionObj.getCategory().getType())
+                {
+                    transactionObj.getCategory().getBudget().setBalance(transactionObj.getAmount());
+                }
+                
                 transactions.Remove(transactionObj);
             }
             catch (Exception ex)
