@@ -11,7 +11,7 @@ namespace ASD_CW_2
         static void Main(string[] args)
         {
             categories.Add(new Category("Salary",true));
-            categories.Add(new Category("Foods", false));
+            categories.Add(new Category("Foods", false, 25000));
             menu();
         }
 
@@ -206,11 +206,22 @@ namespace ASD_CW_2
             string name = Console.ReadLine();
             Console.Write("Enter category type (Income/Expense): ");
             bool type = Console.ReadLine() == "Income" ? true : false;
-            
+            if (type)
+            {
+                Category c1 = new Category(name, type);
+                categories.Add(c1);
 
-            Category c1 = new Category(name, type);
+            }
+            else
+            {
+                Console.Write("Enter category Budget: ");
+                double amount = Convert.ToDouble(Console.ReadLine());
+                Category c1 = new Category(name, type,amount);
+                categories.Add(c1);
+            }
+            //Category c1 = new Category(name, type);
 
-            categories.Add(c1);
+            //categories.Add(c1);
         }
 
         private static void listCategory()
