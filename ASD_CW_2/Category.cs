@@ -12,12 +12,6 @@ namespace ASD_CW_2
         private bool cType;
         private Budget budget;
 
-        public Category(string name, bool type)
-        {
-            this.name = name;
-            this.cType = type;
-        }
-
         public Category(string name, bool type, double amount)
         {
             this.name = name;

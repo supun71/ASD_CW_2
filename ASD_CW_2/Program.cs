@@ -10,7 +10,7 @@ namespace ASD_CW_2
 
         static void Main(string[] args)
         {
-            categories.Add(new Category("Salary",true,0));
+            categories.Add(new Category("Salary",true, 0.0));
             categories.Add(new Category("Foods", false, 25000));
             menu();
         }
@@ -92,11 +92,9 @@ namespace ASD_CW_2
                 Console.WriteLine($"Category {categoryName} is not exist");
             }
             
-            
             Console.Write("Is recurring (true or false): ");
             bool recurring = Convert.ToBoolean(Console.ReadLine());
-            /*Console.Write("Enter due-date (yyyy.mm.dd): ");
-            DateTime date = Convert.ToDateTime(Console.ReadLine());*/
+            
             DateTime date = DateTime.Now;
 
             Transaction t1 = new Transaction(amount, desc, recurring, date, category);
@@ -202,35 +200,49 @@ namespace ASD_CW_2
 
         private static void addCategory()
         {
-            Console.Write("Enter category name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter category type (Income/Expense): ");
-            bool type = Console.ReadLine() == "Income" ? true : false;
-            if (type)
+            try
             {
-                Category c1 = new Category(name, type, 0);
-                categories.Add(c1);
+                Console.Write("Enter category name: ");
+                string name = Console.ReadLine();
+                Console.Write("Enter category type (Income/Expense): ");
+                bool type = Console.ReadLine().Equals("Income") ? true : false;
+                if (type)
+                {
+                    Category c1 = new Category(name, type, 0.0);
+                    categories.Add(c1);
 
+                }
+                else
+                {
+                    Console.Write("Enter category Budget: ");
+                    double amount = Convert.ToDouble(Console.ReadLine());
+                    Category c1 = new Category(name, type, amount);
+                    categories.Add(c1);
+                }
+                //Category c1 = new Category(name, type);
+
+                //categories.Add(c1);
             }
-            else
+            catch(Exception ex)
             {
-                Console.Write("Enter category Budget: ");
-                double amount = Convert.ToDouble(Console.ReadLine());
-                Category c1 = new Category(name, type, amount);
-                categories.Add(c1);
+                Console.WriteLine(ex.Message);
             }
-            //Category c1 = new Category(name, type);
-
-            //categories.Add(c1);
         }
 
         private static void listCategory()
         {
-            Console.WriteLine("\nCategories:");
-            foreach (Category c in categories)
+            try
             {
-                string type = c.getType() ? "Income" : "Expense";
-                Console.WriteLine($"*{c?.getName()}\t: {type}\t{c.getBudget().getAmount()}");
+                Console.WriteLine("\nCategories:");
+                foreach (Category c in categories)
+                {
+                    string type = c.getType() ? "Income" : "Expense";
+                    Console.WriteLine($"*{c?.getName()}\t: {type}\t: {c.getBudget().getBalance()}");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
