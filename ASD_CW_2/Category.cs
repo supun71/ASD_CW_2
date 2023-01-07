@@ -44,5 +44,10 @@ namespace ASD_CW_2
         {
             this.cType = cType;
         }
+
+        public Budget getBudget()
+        {
+            return budget;
+        }
     }
 }
