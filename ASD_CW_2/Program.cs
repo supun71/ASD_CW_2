@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ASD_CW_2
 {
@@ -84,15 +85,21 @@ namespace ASD_CW_2
                 string desc = Console.ReadLine();
 
                 Console.Write("Choose the category:\n");
-                listCategory();
+
+                foreach (Category c in categories)
+                {
+                    Console.WriteLine($"{c?.getName()}");
+                }
+
                 string categoryName = Console.ReadLine();
 
-                Category category = hasCategory(categoryName);
-
-                if (category.Equals(null))
+                if (!categories.Any(category => category.getName().Equals(categoryName)))
                 {
                     Console.WriteLine($"Category {categoryName} is not exist");
+                    menu();
                 }
+
+                Category? category = categories.FirstOrDefault(Category => Category.getName().Equals(categoryName));
 
                 Console.Write("Is recurring (true or false): ");
                 bool recurring = Convert.ToBoolean(Console.ReadLine());
@@ -101,7 +108,10 @@ namespace ASD_CW_2
 
                 Transaction t1 = new Transaction(amount, desc, recurring, date, category);
 
-                category.getBudget().setBalance(category.getBudget().getBalance() - amount);
+                if (!category.getType())
+                {
+                    category.getBudget().setBalance(category.getBudget().getBalance() - amount);
+                }
 
                 transactions.Add(t1);
             }
