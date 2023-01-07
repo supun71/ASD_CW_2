@@ -110,7 +110,8 @@ namespace ASD_CW_2
 
                 if (!category.getType())
                 {
-                    category.getBudget().setBalance(category.getBudget().getBalance() - amount);
+                    //category.getBudget().setBalance(category.getBudget().getBalance() - amount);
+                    category.getBudget().setBalance(-amount); //=================================================updating the budget balance===========================
                 }
 
                 transactions.Add(t1);
@@ -223,8 +224,8 @@ namespace ASD_CW_2
                     Console.WriteLine($"Id number {id} not belongs to any transaction");
                 }
 
-                transactionObj.getCategory().getBudget().setBalance(transactionObj.getCategory().getBudget().getBalance() + transactionObj.getAmount());
-
+                //transactionObj.getCategory().getBudget().setBalance(transactionObj.getCategory().getBudget().getBalance() + transactionObj.getAmount());
+                transactionObj.getCategory().getBudget().setBalance(transactionObj.getAmount());
                 transactions.Remove(transactionObj);
             }
             catch (Exception ex)

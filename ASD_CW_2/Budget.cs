@@ -34,7 +34,7 @@ namespace ASD_CW_2
 
         public void setBalance(double tAmount)
         {
-            balance = bAmount - tAmount;
+            balance = balance + tAmount;
         }
     }
 }
