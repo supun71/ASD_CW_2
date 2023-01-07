@@ -237,7 +237,14 @@ namespace ASD_CW_2
                 foreach (Category c in categories)
                 {
                     string type = c.getType() ? "Income" : "Expense";
-                    Console.WriteLine($"*{c?.getName()}\t: {type}\t: {c.getBudget().getBalance()}");
+                    if (c.getBudget().getAmount() > 0)
+                    {
+                        Console.WriteLine($"*{c?.getName()}\t: {type}\t: {c.getBudget().getBalance()}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"*{c?.getName()}\t: {type}\t: N/A");
+                    }
                 }
             }
             catch(Exception ex)
