@@ -279,7 +279,7 @@ namespace ASD_CW_2
         {
             foreach (Category c in categories)
             {
-                if (c.getName() == name)
+                if (c.getName().Equals(name))
                 {
                     Category category = c;
                     return c;
