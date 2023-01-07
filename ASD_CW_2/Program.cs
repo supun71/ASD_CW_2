@@ -96,8 +96,9 @@ namespace ASD_CW_2
 
             Console.Write("Is recurring (true or false): ");
             bool recurring = Convert.ToBoolean(Console.ReadLine());
-            Console.Write("Enter due-date (yyyy.mm.dd): ");
-            DateTime date = Convert.ToDateTime(Console.ReadLine());
+            /*Console.Write("Enter due-date (yyyy.mm.dd): ");
+            DateTime date = Convert.ToDateTime(Console.ReadLine());*/
+            DateTime date = DateTime.Today;
 
             Transaction t1 = new Transaction(amount, desc, recurring, date);
 

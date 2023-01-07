@@ -18,6 +18,13 @@ namespace ASD_CW_2
             this.cType = type;
         }
 
+        public Category(string name, bool type, double amount)
+        {
+            this.name = name;
+            this.cType = type;
+            this.budget = new Budget(amount);
+        }
+
         public string getName()
         {
             return name;
