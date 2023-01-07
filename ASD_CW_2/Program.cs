@@ -85,10 +85,13 @@ namespace ASD_CW_2
                 Console.WriteLine($" {c?.getName()}");
                 
             }
-            string category1 = Console.ReadLine();
-            if (hasCategory(category1).Equals(null))
+            string categoryName = Console.ReadLine();
+
+            Category category = hasCategory(categoryName);
+
+            if (category.Equals(null))
             {
-              
+                Console.WriteLine($"Category {categoryName} is not exist");
             }
             
             
@@ -98,9 +101,9 @@ namespace ASD_CW_2
             bool recurring = Convert.ToBoolean(Console.ReadLine());
             /*Console.Write("Enter due-date (yyyy.mm.dd): ");
             DateTime date = Convert.ToDateTime(Console.ReadLine());*/
-            DateTime date = DateTime.Today;
+            DateTime date = DateTime.Now;
 
-            Transaction t1 = new Transaction(amount, desc, recurring, date);
+            Transaction t1 = new Transaction(amount, desc, recurring, date, category);
 
             transactions.Add(t1);
         }

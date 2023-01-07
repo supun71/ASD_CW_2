@@ -16,7 +16,7 @@ namespace ASD_CW_2
         private DateTime date;
         private Category category;
 
-        public Transaction(double amount, string desc,  bool recurring, DateTime date)
+        public Transaction(double amount, string desc,  bool recurring, DateTime date, Category category)
         {
             this.id = ++_id;
             this.tAmount = amount;
