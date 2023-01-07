@@ -17,6 +17,7 @@ namespace ASD_CW_2
 
         private static void menu()
         {
+            Console.WriteLine("");
             Console.WriteLine("Choose an option:");
             Console.WriteLine("1) Add Transaction");
             Console.WriteLine("2) List Transactions");
@@ -76,15 +77,12 @@ namespace ASD_CW_2
         {
             Console.Write("Enter transaction amount: ");
             double amount = Convert.ToDouble(Console.ReadLine());
+
             Console.Write("Enter description: ");
             string desc = Console.ReadLine();
+
             Console.Write("Choose the category:\n");
-            foreach (Category c in categories)
-            {
-                
-                Console.WriteLine($" {c?.getName()}");
-                
-            }
+            listCategory();
             string categoryName = Console.ReadLine();
 
             Category category = hasCategory(categoryName);
@@ -95,8 +93,6 @@ namespace ASD_CW_2
             }
             
             
-
-
             Console.Write("Is recurring (true or false): ");
             bool recurring = Convert.ToBoolean(Console.ReadLine());
             /*Console.Write("Enter due-date (yyyy.mm.dd): ");
@@ -184,7 +180,8 @@ namespace ASD_CW_2
         {
             foreach (Transaction t in transactions)
             {
-                Console.WriteLine($"{t.getId()} : {t.getDate()} : {t.getAmount()} : {t.getDescription()} : {t.isRecurring()} : {t.getCategory().getName()}");
+                string rec = t.isRecurring() ? "YES" : "NO";
+                Console.WriteLine($"T_ID: {t.getId()} \tT_Date & Time: {t.getDate()} \tT_Amount: {t.getAmount()} \tT_Description: {t.getDescription()} \tT_Recurring: {rec} \tT_Category: {t.getCategory().getName()}");
             }
         }
 
@@ -218,6 +215,7 @@ namespace ASD_CW_2
 
         private static void listCategory()
         {
+            Console.WriteLine("\nCategories:");
             foreach (Category c in categories)
             {
                 string type = c.getType() ? "Income" : "Expense";
