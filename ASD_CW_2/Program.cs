@@ -101,6 +101,8 @@ namespace ASD_CW_2
 
                 Transaction t1 = new Transaction(amount, desc, recurring, date, category);
 
+                category.getBudget().setBalance(category.getBudget().getBalance() - amount);
+
                 transactions.Add(t1);
             }
             catch (Exception ex)
@@ -210,6 +212,8 @@ namespace ASD_CW_2
                 {
                     Console.WriteLine($"Id number {id} not belongs to any transaction");
                 }
+
+                transactionObj.getCategory().getBudget().setBalance(transactionObj.getCategory().getBudget().getBalance() + transactionObj.getAmount());
 
                 transactions.Remove(transactionObj);
             }
