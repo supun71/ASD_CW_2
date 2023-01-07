@@ -214,7 +214,7 @@ namespace ASD_CW_2
         {
             try
             {
-                Console.Write("Enter the transaction Id: ");
+                Console.Write("Enter the transaction Id you want to delete: ");
                 int id = Convert.ToInt32(Console.ReadLine());
 
                 Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
@@ -264,26 +264,34 @@ namespace ASD_CW_2
 
         private static void listCategory()
         {
+            double total = 0;
             try
             {
+                
                 Console.WriteLine("\nCategories:");
                 foreach (Category c in categories)
                 {
                     string type = c.getType() ? "Income" : "Expense";
                     if (c.getBudget().getAmount() > 0)
                     {
-                        Console.WriteLine($"*{c?.getName()}\t: {type}\t: {c.getBudget().getBalance()}");
+                        Console.WriteLine($"*{c?.getName()}  \t: {type}\t: {c.getBudget().getBalance()}");
                     }
                     else
                     {
-                        Console.WriteLine($"*{c?.getName()}\t: {type}\t: N/A");
+                        Console.WriteLine($"*{c?.getName()}  \t: {type}\t: N/A");
                     }
+                    //--------------------------------------------------------total balance value------------------
+                    total += c.getBudget().getBalance();
+
+
+                    //------------------------------------------------------------------------------
                 }
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            Console.WriteLine(total);//-------------------------------------------------------balance value----------------------------
         }
 
         private static Category hasCategory(string name)
