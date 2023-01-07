@@ -151,11 +151,11 @@ namespace ASD_CW_2
                 {
                     case 1:
                         Console.Write("Enter category: ");
-                        string category = Console.ReadLine();
+                        string categoryName = Console.ReadLine();
 
-                        if (hasCategory(category)== null)
+                        if (!categories.Any(category => category.getName().Equals(categoryName)))
                         {
-                            Console.WriteLine($"Category {category} is not available");
+                            Console.WriteLine($"Category {categoryName} is not available");
                         }
                         editTransaction();
                         break;
