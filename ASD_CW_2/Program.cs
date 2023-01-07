@@ -219,9 +219,6 @@ namespace ASD_CW_2
                     Category c1 = new Category(name, type, amount);
                     categories.Add(c1);
                 }
-                //Category c1 = new Category(name, type);
-
-                //categories.Add(c1);
             }
             catch(Exception ex)
             {
