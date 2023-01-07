@@ -298,7 +298,7 @@ namespace ASD_CW_2
             Console.WriteLine(total);//-------------------------------------------------------balance value----------------------------
         }
 
-        private static Category hasCategory(string name)
+        /*private static Category hasCategory(string name)
         {
             foreach (Category c in categories)
             {
@@ -311,7 +311,7 @@ namespace ASD_CW_2
             }
 
             return null;
-        }
+        }*/
     }
 }
 
