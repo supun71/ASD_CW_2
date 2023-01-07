@@ -75,56 +75,63 @@ namespace ASD_CW_2
 
         private static void addTransaction()
         {
-            Console.Write("Enter transaction amount: ");
-            double amount = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Enter description: ");
-            string desc = Console.ReadLine();
-
-            Console.Write("Choose the category:\n");
-            listCategory();
-            string categoryName = Console.ReadLine();
-
-            Category category = hasCategory(categoryName);
-
-            if (category.Equals(null))
+            try
             {
-                Console.WriteLine($"Category {categoryName} is not exist");
+                Console.Write("Enter transaction amount: ");
+                double amount = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Enter description: ");
+                string desc = Console.ReadLine();
+
+                Console.Write("Choose the category:\n");
+                listCategory();
+                string categoryName = Console.ReadLine();
+
+                Category category = hasCategory(categoryName);
+
+                if (category.Equals(null))
+                {
+                    Console.WriteLine($"Category {categoryName} is not exist");
+                }
+
+                Console.Write("Is recurring (true or false): ");
+                bool recurring = Convert.ToBoolean(Console.ReadLine());
+
+                DateTime date = DateTime.Now;
+
+                Transaction t1 = new Transaction(amount, desc, recurring, date, category);
+
+                transactions.Add(t1);
             }
-            
-            Console.Write("Is recurring (true or false): ");
-            bool recurring = Convert.ToBoolean(Console.ReadLine());
-            
-            DateTime date = DateTime.Now;
-
-            Transaction t1 = new Transaction(amount, desc, recurring, date, category);
-
-            transactions.Add(t1);
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void editTransaction()
         {
-            Console.Write("Enter the transaction Id: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
-
-            if (transactionObj == null)
-            {
-                Console.WriteLine($"Id number {id} not belongs to any transaction");
-            }
-
-            Console.WriteLine("Choose an option:");
-            Console.WriteLine("1) Change Category");
-            Console.WriteLine("2) Change Date");
-            Console.WriteLine("3) Edit Amount");
-            Console.WriteLine("4) Edit Description");
-            Console.WriteLine("5) Change recurring status");
-
-            Console.Write("Select an option: ");
-
             try
             {
+                Console.Write("Enter the transaction Id: ");
+                int id = Convert.ToInt32(Console.ReadLine());
+
+                Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
+
+                if (transactionObj == null)
+                {
+                    Console.WriteLine($"Id number {id} not belongs to any transaction");
+                }
+
+                Console.WriteLine("Choose an option:");
+                Console.WriteLine("1) Change Category");
+                Console.WriteLine("2) Change Date");
+                Console.WriteLine("3) Edit Amount");
+                Console.WriteLine("4) Edit Description");
+                Console.WriteLine("5) Change recurring status");
+
+                Console.Write("Select an option: ");
+
                 int userInput = Convert.ToInt32(Console.ReadLine());
 
                 switch (userInput)
@@ -176,26 +183,40 @@ namespace ASD_CW_2
 
         private static void listTransaction()
         {
-            foreach (Transaction t in transactions)
+            try
             {
-                string rec = t.isRecurring() ? "YES" : "NO";
-                Console.WriteLine($"T_ID: {t.getId()} \tT_Date & Time: {t.getDate()} \tT_Amount: {t.getAmount()} \tT_Description: {t.getDescription()} \tT_Recurring: {rec} \tT_Category: {t.getCategory().getName()}");
+                foreach (Transaction t in transactions)
+                {
+                    string rec = t.isRecurring() ? "YES" : "NO";
+                    Console.WriteLine($"T_ID: {t.getId()} \tT_Date & Time: {t.getDate()} \tT_Amount: {t.getAmount()} \tT_Description: {t.getDescription()} \tT_Recurring: {rec} \tT_Category: {t.getCategory().getName()}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
         private static void deleteTransaction()
         {
-            Console.Write("Enter the transaction Id: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
-
-            if (transactionObj == null)
+            try
             {
-                Console.WriteLine($"Id number {id} not belongs to any transaction");
-            }
+                Console.Write("Enter the transaction Id: ");
+                int id = Convert.ToInt32(Console.ReadLine());
 
-            transactions.Remove(transactionObj);
+                Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
+
+                if (transactionObj == null)
+                {
+                    Console.WriteLine($"Id number {id} not belongs to any transaction");
+                }
+
+                transactions.Remove(transactionObj);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void addCategory()
