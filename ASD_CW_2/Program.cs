@@ -25,6 +25,7 @@ namespace ASD_CW_2
             Console.WriteLine("4) Delete Transaction");
             Console.WriteLine("5) Add Category");
             Console.WriteLine("6) List Category");
+            Console.WriteLine("7) Exit");
 
             Console.Write("Select an option: ");
 
@@ -59,8 +60,7 @@ namespace ASD_CW_2
                         menu();
                         break;
                     case 7:
-                        listCategory();
-                        menu();
+                        Environment.Exit(0);
                         break;
                     default:
                         Console.WriteLine("");
