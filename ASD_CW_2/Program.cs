@@ -219,7 +219,7 @@ namespace ASD_CW_2
             foreach (Category c in categories)
             {
                 string type = c.getType() ? "Income" : "Expense";
-                Console.WriteLine($"{c?.getName()} : {type}");
+                Console.WriteLine($"*{c?.getName()}\t: {type}");
             }
         }
 
