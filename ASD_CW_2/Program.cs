@@ -27,9 +27,9 @@ namespace ASD_CW_2
             Console.WriteLine("3) Edit Transaction");
             Console.WriteLine("4) Delete Transaction");
             Console.WriteLine("5) Add Category");
-
-            Console.WriteLine("6) List Category");
-            Console.WriteLine("7) Exit");
+            Console.WriteLine("6) Edit Category");
+            Console.WriteLine("7) List Category");
+            Console.WriteLine("8) Exit");
 
             Console.Write("Select an option: ");
 
@@ -60,10 +60,14 @@ namespace ASD_CW_2
                         menu();
                         break;
                     case 6:
-                        listCategory();
+                        editCategory();
                         menu();
                         break;
                     case 7:
+                        listCategory();
+                        menu();
+                        break;
+                    case 8:
                         Environment.Exit(0);
                         break;
                     default:
@@ -338,7 +342,7 @@ namespace ASD_CW_2
                 foreach (Category c in categories)
                 {
                     string type = c.getType() ? "Income" : "Expense";
-                    if (c.getBudget().getAmount() > 0)
+                    if (!c.getType())
                     {
                         Console.WriteLine($"*{c?.getName()}  \t: {type}\t: {c.getBudget().getBalance()}");
                     }
