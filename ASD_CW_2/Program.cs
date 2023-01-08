@@ -355,11 +355,11 @@ namespace ASD_CW_2
                     string type = c.getType() ? "Income" : "Expense";
                     if (!c.getType())
                     {
-                        Console.WriteLine($"*{c?.getName()}  \t: {type}\t: {c.getBudget().getBalance()}");
+                        Console.WriteLine($"*C_Name: {c?.getName()}  \tC_Type: {type} \tC_Budget: {c.getBudget().getAmount()} \tC_Balance: {c.getBudget().getBalance()}");
                     }
                     else
                     {
-                        Console.WriteLine($"*{c?.getName()}  \t: {type}\t: N/A");
+                        Console.WriteLine($"*C_Name: {c?.getName()}  \tC_Type: {type} \t\tC_Budget: N/A \tC_Balance: N/A");
                     }
                     //--------------------------------------------------------total balance value------------------
                     total += c.getBudget().getBalance();
