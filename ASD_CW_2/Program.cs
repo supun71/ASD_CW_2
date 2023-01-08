@@ -33,7 +33,8 @@ namespace ASD_CW_2
             Console.WriteLine("5) Add Category");
             Console.WriteLine("6) Edit Category");
             Console.WriteLine("7) List Category");
-            Console.WriteLine("8) Exit");
+            Console.WriteLine("8) Reload");
+            Console.WriteLine("9) Exit");
 
             Console.Write("Select an option: ");
 
@@ -72,6 +73,10 @@ namespace ASD_CW_2
                         menu();
                         break;
                     case 8:
+                        addRecurringTransactions();
+                        menu();
+                        break;
+                    case 9:
                         Environment.Exit(0);
                         break;
                     default:
@@ -402,6 +407,39 @@ namespace ASD_CW_2
                 Console.WriteLine(ex.Message);
             }
             Console.WriteLine(total);//-------------------------------------------------------balance value----------------------------
+        }
+
+        private static void addRecurringTransactions()
+        {
+            try
+            {
+                List<Transaction> tempTransactions = new List<Transaction>();
+                DateTime previousDay = DateTime.Now.AddMinutes(-1);
+
+                foreach (Transaction t in transactions)
+                {
+                    if (t.isRecurring() && t.getDate().ToString("g").Equals(previousDay.ToString("g")))
+                    {
+                        Transaction t1 = new Transaction(t.getAmount(), t.getDescription(), t.isRecurring(), DateTime.Now, t.getCategory());
+
+                        if (!t.getCategory().getType())
+                        {
+                            t.getCategory().getBudget().setBalance(-t.getAmount());
+                        }
+
+                        tempTransactions.Add(t1);
+                    }
+                }
+
+                foreach (Transaction t in tempTransactions)
+                {
+                    transactions.Add(t);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
     }
