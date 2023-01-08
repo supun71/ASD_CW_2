@@ -9,7 +9,7 @@ namespace ASD_CW_2
     {
         private static List<Transaction> transactions = new List<Transaction>();
         private static List<Category> categories = new List<Category>();
-        double static total = 0.0;
+        //private static double total = 0.0;
 
         static void Main(string[] args)
         {
@@ -304,10 +304,10 @@ namespace ASD_CW_2
                     Console.Write("Enter category Budget: ");
                     double amount = Convert.ToDouble(Console.ReadLine());
 
-                    if ((total+amount) > income)
+                    /*if ((total+amount) > getTotalIncome())
                     {
-                        Console.WriteLine("Total Budget amount exceed income");
-                    }
+                        Console.WriteLine("Total budget amount exceed income");
+                    }*/
 
                     Category c1 = new Category(name, type, amount);
                     categories.Add(c1);
@@ -374,6 +374,12 @@ namespace ASD_CW_2
                 case 3:
                     Console.Write("Enter New category Budget: ");
                     double catAmount = Convert.ToDouble(Console.ReadLine());
+
+                    /*if ((total + catAmount) > getTotalIncome())
+                    {
+                        Console.WriteLine("Total budget amount exceed income");
+                    }*/
+
                     catObj.getBudget().setAmount(catAmount);
                     changeCategory(catObj);
                     break;
@@ -419,6 +425,21 @@ namespace ASD_CW_2
                 Console.WriteLine(ex.Message);
             }
             Console.WriteLine(total);//-------------------------------------------------------balance value----------------------------
+        }
+
+        private static double getTotalIncome()
+        {
+            double total = 0.0;
+
+            foreach (Transaction t in transactions)
+            {
+                if (t.getCategory().getType())
+                {
+                    total += t.getAmount();
+                }
+            }
+
+            return total;
         }
 
         private static void addRecurringTransactions()
