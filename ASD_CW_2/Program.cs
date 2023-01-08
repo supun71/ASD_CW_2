@@ -15,6 +15,10 @@ namespace ASD_CW_2
             categories.Add(new Category("Foods", false, 0.0));
             categories.Add(new Category("Transport", false, 0.0));
             categories.Add(new Category("Clothes", false, 0.0));
+
+            //Console.Write("Enter Your Primary Income: ");
+            addPrimaryIncome();
+
             menu();
         }
 
@@ -128,6 +132,31 @@ namespace ASD_CW_2
                 Console.WriteLine(ex.Message);
             }
         }
+
+        private static void addPrimaryIncome()
+        {
+            try
+            {
+                Console.Write("Enter Your Primary Income: ");
+                double amount = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Enter description: ");
+                string desc = Console.ReadLine();
+                DateTime date = DateTime.Now;
+
+                Category? category = categories.FirstOrDefault(Category => Category.getName().Equals("Salary"));
+
+                Transaction t1 = new Transaction(amount, desc, true, date, category);
+
+                transactions.Add(t1);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
 
         private static void editTransaction()
         {
