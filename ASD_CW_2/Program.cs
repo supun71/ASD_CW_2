@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Schema;
 
 namespace ASD_CW_2
 {
@@ -8,6 +9,7 @@ namespace ASD_CW_2
     {
         private static List<Transaction> transactions = new List<Transaction>();
         private static List<Category> categories = new List<Category>();
+        double static total = 0.0;
 
         static void Main(string[] args)
         {
@@ -301,6 +303,12 @@ namespace ASD_CW_2
                 {
                     Console.Write("Enter category Budget: ");
                     double amount = Convert.ToDouble(Console.ReadLine());
+
+                    if ((total+amount) > income)
+                    {
+                        Console.WriteLine("Total Budget amount exceed income");
+                    }
+
                     Category c1 = new Category(name, type, amount);
                     categories.Add(c1);
                 }
