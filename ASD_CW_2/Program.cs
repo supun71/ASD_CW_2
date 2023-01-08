@@ -9,7 +9,6 @@ namespace ASD_CW_2
     {
         private static List<Transaction> transactions = new List<Transaction>();
         private static List<Category> categories = new List<Category>();
-        //private static double total = 0.0;
 
         static void Main(string[] args)
         {
@@ -304,10 +303,10 @@ namespace ASD_CW_2
                     Console.Write("Enter category Budget: ");
                     double amount = Convert.ToDouble(Console.ReadLine());
 
-                    /*if ((total+amount) > getTotalIncome())
+                    if ((getTotalBudget() + amount) > getTotalIncome())
                     {
                         Console.WriteLine("Total budget amount exceed income");
-                    }*/
+                    }
 
                     Category c1 = new Category(name, type, amount);
                     categories.Add(c1);
@@ -375,12 +374,15 @@ namespace ASD_CW_2
                     Console.Write("Enter New category Budget: ");
                     double catAmount = Convert.ToDouble(Console.ReadLine());
 
-                    /*if ((total + catAmount) > getTotalIncome())
+                    if ((getTotalBudget() + catAmount) > getTotalIncome())
                     {
                         Console.WriteLine("Total budget amount exceed income");
-                    }*/
+                    }
+                    else
+                    {
+                        catObj.getBudget().setAmount(catAmount);
+                    }
 
-                    catObj.getBudget().setAmount(catAmount);
                     changeCategory(catObj);
                     break;
                 case 4:
@@ -437,6 +439,18 @@ namespace ASD_CW_2
                 {
                     total += t.getAmount();
                 }
+            }
+
+            return total;
+        }
+
+        private static double getTotalBudget()
+        {
+            double total = 0.0;
+
+            foreach (Category c in categories)
+            {
+                total += c.getBudget().getAmount();
             }
 
             return total;
