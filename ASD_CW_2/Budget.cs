@@ -29,12 +29,12 @@ namespace ASD_CW_2
 
         public void setAmount(double bAmount)
         {
-            this.bAmount = bAmount;
+            this.bAmount += bAmount;
         }
 
         public void setBalance(double tAmount)
         {
-            balance = balance + tAmount;
+            this.balance += tAmount;
         }
     }
 }

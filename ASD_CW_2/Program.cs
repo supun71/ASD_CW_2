@@ -288,47 +288,58 @@ namespace ASD_CW_2
                     Console.WriteLine($"Id number {cat_ID} not belongs to any transaction");
                 }
 
-                Console.WriteLine("Choose an option:");
-                Console.WriteLine("1) Change Category Name");
-                Console.WriteLine("2) Change Type");
-                Console.WriteLine("3) Edit Budget");
-
-                Console.Write("Select an option: ");
-
-                int userInput = Convert.ToInt32(Console.ReadLine());
-
-                switch (userInput)
-                {
-                    case 1:
-                        Console.Write("Enter New Category Name: ");
-                        string catName = Console.ReadLine();
-
-                        catObj.setName(catName);
-                        editCategory();
-                        break;
-                    case 2:
-                        Console.Write("Enter the category Type ");
-                        //string categoryType = Console.ReadLine();
-                        bool catType = Console.ReadLine().Equals("Income") ? true : false;
-                        catObj.setType(catType);
-                        editCategory();
-                        break;
-                    case 3:
-                        Console.Write("Enter New category Budget: ");
-                        double catAmount = Convert.ToDouble(Console.ReadLine());
-                        catObj.getBudget().setAmount(catAmount);
-                        editCategory();
-                        break;
-                    
-                    default:
-                        Console.WriteLine("");
-                        throw new NotImplementedException();
-                }
+                changeCategory(catObj);
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static void changeCategory(Category catObj)
+        {
+            Console.WriteLine("Choose an option:");
+            Console.WriteLine("1) Change Category Name");
+            Console.WriteLine("2) Change Type");
+            Console.WriteLine("3) Edit Budget");
+            Console.WriteLine("4) Back to Menu");
+
+            Console.Write("Select an option: ");
+
+            int userInput = Convert.ToInt32(Console.ReadLine());
+
+            switch (userInput)
+            {
+                case 1:
+                    Console.Write("Enter New Category Name: ");
+                    string catName = Console.ReadLine();
+
+                    catObj.setName(catName);
+                    changeCategory(catObj);
+                    break;
+                case 2:
+                    Console.Write("Enter the category Type: ");
+                    //string categoryType = Console.ReadLine();
+                    bool catType = Console.ReadLine().Equals("Income") ? true : false;
+                    catObj.setType(catType);
+                    changeCategory(catObj);
+                    break;
+                case 3:
+                    Console.Write("Enter New category Budget: ");
+                    double catAmount = Convert.ToDouble(Console.ReadLine());
+                    catObj.getBudget().setAmount(catAmount);
+                    changeCategory(catObj);
+                    break;
+                case 4:
+                    menu();
+                    break;
+
+                default:
+                    Console.WriteLine("");
+                    throw new NotImplementedException();
+            }
+
         }
 
 
