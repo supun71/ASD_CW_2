@@ -88,18 +88,18 @@ namespace ASD_CW_2
 
                 foreach (Category c in categories)
                 {
-                    Console.WriteLine($"{c?.getName()}");
+                    Console.WriteLine($"{c.getId()}) {c?.getName()}");
                 }
 
-                string categoryName = Console.ReadLine();
+                int categoryId = Convert.ToInt32(Console.ReadLine());
 
-                if (!categories.Any(category => category.getName().Equals(categoryName)))
+                if (!categories.Any(category => category.getId().Equals(categoryId)))
                 {
-                    Console.WriteLine($"Category {categoryName} is not exist");
+                    Console.WriteLine($"Category is not exist");
                     menu();
                 }
 
-                Category? category = categories.FirstOrDefault(Category => Category.getName().Equals(categoryName));
+                Category? category = categories.FirstOrDefault(Category => Category.getId().Equals(categoryId));
 
                 Console.Write("Is recurring (true or false): ");
                 bool recurring = Convert.ToBoolean(Console.ReadLine());
