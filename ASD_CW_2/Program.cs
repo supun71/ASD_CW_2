@@ -298,20 +298,6 @@ namespace ASD_CW_2
             Console.WriteLine(total);//-------------------------------------------------------balance value----------------------------
         }
 
-        /*private static Category hasCategory(string name)
-        {
-            foreach (Category c in categories)
-            {
-                if (c.getName().Equals(name))
-                {
-                    Category category = c;
-                    return c;
-                }
-                return null;
-            }
-
-            return null;
-        }*/
     }
 }
 
