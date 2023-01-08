@@ -210,6 +210,10 @@ namespace ASD_CW_2
                         Console.Write("Enter transaction amount: ");
                         double amount = Convert.ToDouble(Console.ReadLine());
                         transactionObj.setAmount(amount);
+                        if (!transactionObj.getCategory().getType())
+                        {
+                            transactionObj.getCategory().getBudget().setBalance(-amount); //=================================================updating the budget balance===========================
+                        }
                         editTransaction();
                         break;
                     case 4:
