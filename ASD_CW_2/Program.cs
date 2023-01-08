@@ -12,7 +12,9 @@ namespace ASD_CW_2
         static void Main(string[] args)
         {
             categories.Add(new Category("Salary",true, 0.0));
-            categories.Add(new Category("Foods", false, 25000));
+            categories.Add(new Category("Foods", false, 0.0));
+            categories.Add(new Category("Transport", false, 0.0));
+            categories.Add(new Category("Clothes", false, 0.0));
             menu();
         }
 
@@ -25,6 +27,7 @@ namespace ASD_CW_2
             Console.WriteLine("3) Edit Transaction");
             Console.WriteLine("4) Delete Transaction");
             Console.WriteLine("5) Add Category");
+
             Console.WriteLine("6) List Category");
             Console.WriteLine("7) Exit");
 
@@ -265,6 +268,65 @@ namespace ASD_CW_2
                 Console.WriteLine(ex.Message);
             }
         }
+
+
+        private static void editCategory()
+        {
+            try
+            {
+                Console.Write("Enter the Category Name You Want to Edit: ");
+                string cat_ID = Console.ReadLine();
+
+                Category catObj = categories.FirstOrDefault(Category => Category.getName() == cat_ID);
+
+                if (catObj == null)
+                {
+                    Console.WriteLine($"Id number {cat_ID} not belongs to any transaction");
+                }
+
+                Console.WriteLine("Choose an option:");
+                Console.WriteLine("1) Change Category Name");
+                Console.WriteLine("2) Change Type");
+                Console.WriteLine("3) Edit Budget");
+
+                Console.Write("Select an option: ");
+
+                int userInput = Convert.ToInt32(Console.ReadLine());
+
+                switch (userInput)
+                {
+                    case 1:
+                        Console.Write("Enter New Category Name: ");
+                        string catName = Console.ReadLine();
+
+                        catObj.setName(catName);
+                        editCategory();
+                        break;
+                    case 2:
+                        Console.Write("Enter the category Type ");
+                        //string categoryType = Console.ReadLine();
+                        bool catType = Console.ReadLine().Equals("Income") ? true : false;
+                        catObj.setType(catType);
+                        editCategory();
+                        break;
+                    case 3:
+                        Console.Write("Enter New category Budget: ");
+                        double catAmount = Convert.ToDouble(Console.ReadLine());
+                        catObj.getBudget().setAmount(catAmount);
+                        editCategory();
+                        break;
+                    
+                    default:
+                        Console.WriteLine("");
+                        throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
 
         private static void listCategory()
         {
