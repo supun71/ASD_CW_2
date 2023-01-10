@@ -376,7 +376,7 @@ namespace ASD_CW_2
 
                     if ((getTotalBudget() + catAmount) > getTotalIncome())
                     {
-                        Console.WriteLine("Total budget amount exceed income");
+                        Console.WriteLine("Total Budget Amount Exceeds Total Income");
                     }
                     else
                     {
