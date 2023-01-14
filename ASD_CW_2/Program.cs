@@ -585,6 +585,8 @@ namespace ASD_CW_2
                 foreach (Transaction t in tempTransactions)
                 {
                     transactions.Add(t);
+
+                    Console.WriteLine("Last recurring transactions added successfully");
                 }
             }
             catch (Exception ex)
