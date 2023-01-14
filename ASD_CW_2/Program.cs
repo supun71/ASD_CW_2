@@ -496,10 +496,10 @@ namespace ASD_CW_2
         // List categories
         private static void listCategory()
         {
-            double total = 0;
             try
             {
-                
+                double total = 0;
+
                 Console.WriteLine("\nCategories:");
                 foreach (Category c in categories)
                 {
