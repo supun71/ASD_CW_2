@@ -78,7 +78,7 @@ namespace ASD_CW_2
                         menu();
                         break;
                     case 8:
-                        progress();
+                        listCategory();
                         menu();
                         break;
                     case 9:
@@ -534,7 +534,7 @@ namespace ASD_CW_2
                     total += c.getBudget().getBalance();
                 }
 
-                Console.WriteLine(total);// Display total budget balance value
+                Console.WriteLine($"Total Budget: {getTotalBudget()}    \tTotal Balance: {total}"); // Display total budget and budget balance value
             }
             catch(Exception ex)
             {
@@ -616,30 +616,6 @@ namespace ASD_CW_2
             }
         }
 
-        // Display Progress
-        private static void progress()
-        {
-            try
-            {
-                double total = 0.0;
-
-                foreach (Category c in categories)
-                {
-                    if (!c.getType())
-                    {
-                        Console.WriteLine($"C_Name: {c.getName()}  \tC_Budget: {c.getBudget().getAmount()} \tC_Balance: {c.getBudget().getBalance()}");
-                    }
-                    // calculate total budget balance value
-                    total += c.getBudget().getBalance();
-                }
-
-                Console.WriteLine($"Total Budget: {getTotalBudget()}    \tTotal Balance: {total}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
     }
 }
 
