@@ -205,12 +205,25 @@ namespace ASD_CW_2
                 // Get transaction object from list
                 Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
 
+                changeTransaction(transactionObj);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static void changeTransaction(Transaction transactionObj)
+        {
+            try
+            {
                 Console.WriteLine("Choose an option:");
                 Console.WriteLine("1) Change Category");
                 Console.WriteLine("2) Change Date");
                 Console.WriteLine("3) Edit Amount");
                 Console.WriteLine("4) Edit Description");
                 Console.WriteLine("5) Change recurring status");
+                Console.WriteLine("6) Go to Main menu");
 
                 Console.Write("Select an option: ");
 
@@ -235,7 +248,7 @@ namespace ASD_CW_2
                             Console.WriteLine($"Category change to {categoryName} Successfully");
                         }
 
-                        editTransaction();
+                        changeTransaction(transactionObj);
                         break;
                     case 2:
                         Console.Write("Enter due-date (yyyy.mm.dd): ");
@@ -245,8 +258,8 @@ namespace ASD_CW_2
                         transactionObj.setDateTime(date);
 
                         Console.WriteLine("Transaction Date/Time Updated Successfully");
-                        
-                        editTransaction();
+
+                        changeTransaction(transactionObj);
                         break;
                     case 3:
                         Console.Write("Enter transaction amount: ");
@@ -263,7 +276,7 @@ namespace ASD_CW_2
 
                         Console.WriteLine("Transaction Amount Updated Successfully");
 
-                        editTransaction();
+                        changeTransaction(transactionObj);
                         break;
                     case 4:
                         Console.Write("Enter description: ");
@@ -274,7 +287,7 @@ namespace ASD_CW_2
 
                         Console.WriteLine("Transaction Description Updated Successfully");
 
-                        editTransaction();
+                        changeTransaction(transactionObj);
                         break;
                     case 5:
                         Console.Write("Is recurring (true or false): ");
@@ -285,7 +298,10 @@ namespace ASD_CW_2
 
                         Console.WriteLine("Transaction Recurring Status Updated Successfully");
 
-                        editTransaction();
+                        changeTransaction(transactionObj);
+                        break;
+                    case 6:
+                        menu();
                         break;
                     default:
                         Console.WriteLine("");

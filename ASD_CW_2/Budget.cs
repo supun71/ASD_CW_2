@@ -33,8 +33,9 @@ namespace ASD_CW_2
         // Update budget amount
         public void setAmount(double bAmount)
         {
-            this.bAmount = bAmount;
-            this.balance += bAmount;
+            double previousAmount = this.bAmount; // Store current budget amount in temp variable
+            this.bAmount = bAmount; // Update budget amount
+            this.balance += (previousAmount - bAmount); // Old and new budget amount difference value add to current balance
         }
 
         // Update budget balance
