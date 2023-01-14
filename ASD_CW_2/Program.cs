@@ -37,8 +37,9 @@ namespace ASD_CW_2
             Console.WriteLine("5) Add Category");
             Console.WriteLine("6) Edit Category");
             Console.WriteLine("7) List Category");
-            Console.WriteLine("8) Reload");
-            Console.WriteLine("9) Exit");
+            Console.WriteLine("8) Track Progress");
+            Console.WriteLine("9) Reload");
+            Console.WriteLine("10) Exit");
 
             Console.Write("Select an option: ");
 
@@ -77,10 +78,14 @@ namespace ASD_CW_2
                         menu();
                         break;
                     case 8:
-                        addRecurringTransactions();
+                        progress();
                         menu();
                         break;
                     case 9:
+                        addRecurringTransactions();
+                        menu();
+                        break;
+                    case 10:
                         Environment.Exit(0); // Exit method
                         break;
                     default:
@@ -398,18 +403,18 @@ namespace ASD_CW_2
             try
             {
                 Console.Write("Enter the Category Name You Want to Edit: ");
-                string cat_ID = Console.ReadLine();
+                string cat_Name = Console.ReadLine();
 
                 // Check category is not exist
-                if (!categories.Any(category => category.getId().Equals(cat_ID)))
+                if (!categories.Any(category => category.getName().Equals(cat_Name)))
                 {
-                    Console.WriteLine($"Category {cat_ID} is not available");
+                    Console.WriteLine($"Category {cat_Name} is not available");
                     menu();
                 }
                 else
                 {
                     // Get category object from list
-                    Category catObj = categories.FirstOrDefault(Category => Category.getName() == cat_ID);
+                    Category catObj = categories.FirstOrDefault(Category => Category.getName() == cat_Name);
 
                     // Change category attributes
                     changeCategory(catObj);
@@ -595,6 +600,30 @@ namespace ASD_CW_2
             }
         }
 
+        // Display Progress
+        private static void progress()
+        {
+            try
+            {
+                double total = 0.0;
+
+                foreach (Category c in categories)
+                {
+                    if (!c.getType())
+                    {
+                        Console.WriteLine($"C_Name: {c.getName()}  \tC_Budget: {c.getBudget().getAmount()} \tC_Balance: {c.getBudget().getBalance()}");
+                    }
+                    // calculate total budget balance value
+                    total += c.getBudget().getBalance();
+                }
+
+                Console.WriteLine($"Total Budget: {getTotalBudget()}    \tTotal Balance: {total}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
 

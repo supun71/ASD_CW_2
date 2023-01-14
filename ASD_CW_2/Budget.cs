@@ -33,7 +33,8 @@ namespace ASD_CW_2
         // Update budget amount
         public void setAmount(double bAmount)
         {
-            this.bAmount += bAmount;
+            this.bAmount = bAmount;
+            this.balance += bAmount;
         }
 
         // Update budget balance
