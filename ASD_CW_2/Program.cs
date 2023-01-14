@@ -21,9 +21,11 @@ namespace ASD_CW_2
             // Enter Primary Income
             addPrimaryIncome();
 
+            // Display menu options
             menu();
         }
 
+        // Display menu options
         private static void menu()
         {
             Console.WriteLine("");
@@ -79,7 +81,7 @@ namespace ASD_CW_2
                         menu();
                         break;
                     case 9:
-                        Environment.Exit(0);
+                        Environment.Exit(0); // Exit method
                         break;
                     default:
                         Console.WriteLine("");
@@ -92,6 +94,7 @@ namespace ASD_CW_2
             }
         }
 
+        // Add new transaction
         private static void addTransaction()
         {
             try
@@ -148,6 +151,7 @@ namespace ASD_CW_2
             }
         }
 
+        // Add primary income
         private static void addPrimaryIncome()
         {
             try
@@ -157,12 +161,17 @@ namespace ASD_CW_2
 
                 Console.Write("Enter description: ");
                 string desc = Console.ReadLine();
+
+                // Set date as current date time value
                 DateTime date = DateTime.Now;
 
+                // Get category object related id from category list
                 Category? category = categories.FirstOrDefault(Category => Category.getName().Equals("Salary"));
 
+                // create transaction object
                 Transaction t1 = new Transaction(amount, desc, true, date, category);
 
+                // transaction object added to the list
                 transactions.Add(t1);
             }
             catch (Exception ex)
@@ -171,8 +180,7 @@ namespace ASD_CW_2
             }
         }
 
-
-
+        // Edit existing transaction object
         private static void editTransaction()
         {
             try
@@ -180,6 +188,7 @@ namespace ASD_CW_2
                 Console.Write("Enter the transaction Id: ");
                 int id = Convert.ToInt32(Console.ReadLine());
 
+                // Get transaction object from list
                 Transaction transactionObj = transactions.FirstOrDefault(Transaction => Transaction.getId() == id);
 
                 if (transactionObj == null)
