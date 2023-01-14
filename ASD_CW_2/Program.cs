@@ -12,12 +12,13 @@ namespace ASD_CW_2
 
         static void Main(string[] args)
         {
+            // Add predefine categories
             categories.Add(new Category("Salary",true, 0.0));
             categories.Add(new Category("Foods", false, 0.0));
             categories.Add(new Category("Transport", false, 0.0));
             categories.Add(new Category("Clothes", false, 0.0));
 
-            //Console.Write("Enter Your Primary Income: ");
+            // Enter Primary Income
             addPrimaryIncome();
 
             menu();
@@ -103,6 +104,7 @@ namespace ASD_CW_2
 
                 Console.Write("Choose the category:\n");
 
+                // Display categories with id
                 foreach (Category c in categories)
                 {
                     Console.WriteLine($"{c.getId()}) {c?.getName()}");
@@ -110,28 +112,35 @@ namespace ASD_CW_2
 
                 int categoryId = Convert.ToInt32(Console.ReadLine());
 
+                // Check category is exist or not
                 if (!categories.Any(category => category.getId().Equals(categoryId)))
                 {
                     Console.WriteLine($"Category is not exist");
                     menu();
                 }
 
+                // Get category object related id from category list
                 Category? category = categories.FirstOrDefault(Category => Category.getId().Equals(categoryId));
 
                 Console.Write("Is recurring (true or false): ");
                 bool recurring = Convert.ToBoolean(Console.ReadLine());
 
+                // Set date as current date time value
                 DateTime date = DateTime.Now;
 
+                // create transaction object
                 Transaction t1 = new Transaction(amount, desc, recurring, date, category);
 
+                // update the budget balance if category type is expense
                 if (!category.getType())
                 {
-                    //category.getBudget().setBalance(category.getBudget().getBalance() - amount);
-                    category.getBudget().setBalance(-amount); //=================================================updating the budget balance===========================
+                    category.getBudget().setBalance(-amount); // updating the budget balance
                 }
 
+                // transaction object added to the list
                 transactions.Add(t1);
+
+                Console.WriteLine("Transaction Added Successfully");
             }
             catch (Exception ex)
             {
