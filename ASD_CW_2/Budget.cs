@@ -35,7 +35,7 @@ namespace ASD_CW_2
         {
             double previousAmount = this.bAmount; // Store current budget amount in temp variable
             this.bAmount = bAmount; // Update budget amount
-            this.balance += (previousAmount - bAmount); // Old and new budget amount difference value add to current balance
+            this.balance += (-previousAmount + bAmount); // Old and new budget amount difference value add to current balance
         }
 
         // Update budget balance
