@@ -37,9 +37,8 @@ namespace ASD_CW_2
             Console.WriteLine("5) Add Category");
             Console.WriteLine("6) Edit Category");
             Console.WriteLine("7) List Category");
-            Console.WriteLine("8) Track Progress");
-            Console.WriteLine("9) Reload");
-            Console.WriteLine("10) Exit");
+            Console.WriteLine("8) Reload");
+            Console.WriteLine("9) Exit");
 
             Console.Write("Select an option: ");
 
@@ -78,14 +77,10 @@ namespace ASD_CW_2
                         menu();
                         break;
                     case 8:
-                        listCategory();
-                        menu();
-                        break;
-                    case 9:
                         addRecurringTransactions();
                         menu();
                         break;
-                    case 10:
+                    case 9:
                         Environment.Exit(0); // Exit method
                         break;
                     default:
